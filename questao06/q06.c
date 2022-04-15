@@ -6,46 +6,61 @@ j ́a citados  ́e considerado nulo; em qualquer situa ̧c ̃ao, o eleitor deve 
 #include <stdio.h>
 
 int main(){
-    int paulo, renata, voto, nulo, branco, total_votos;
+    int paulo = 0, renata = 0, voto = 0, nulo = 0, branco = 0, total_votos = 0;
     float pp, pr, pn, pb;
+    char confirmacao;
 
-    do{
+    while (1){
         puts("5 - Paulo\n");
         puts("7 - Renata\n");
         puts("0 - Branco\n");
-        puts("Seu voto: ");
+        puts("Seu voto:");
         scanf("%d", &voto);
 
-        switch (voto){
-        case (5):
-            paulo++;
-            total_votos++;
-            break;
-        case (7):
-            renata++;
-            total_votos++;
-        case (0):
-            branco++;
-            total_votos++;
-        default:
-            nulo++;
-            total_votos++;
+        if(voto < 0){
             break;
         }
-    }while(voto >= 0);
 
-    pp = 100 * paulo / total_votos;
-    pr = 100 * renata / total_votos;
-    pn = 100 * nulo / total_votos;
-    pb = 100 * branco / total_votos;
+        printf("Confirma? s para sim ou n para nao\n");
+        scanf("%c", &confirmacao);
 
-    printf("Paulo: %0.2f %%\n", pp);
-    printf("Renata: %0.2f %%\n", pr);
-    printf("Nulo: %0.2f %%\n", pn);
-    printf("Branco: %0.2f %%\n", pb);
+        confirmacao = getchar();
+        if (confirmacao == 's'){
+            total_votos += 1;
+            switch (voto){
+            case (5):
+                paulo += 1;
+                break;
+            case (7):
+                renata += 1;
+                break;
+            case (0):
+                branco += 1;
+                break;
+            default:
+                nulo += 1;
+                break;
+            }
+        }else if(confirmacao == 'n'){
+            continue;
+        }
+    }
 
+    pp = 100 * ((float) paulo / total_votos);
+    pr = 100 * ((float) renata / total_votos);
+    pn = 100 * ((float) nulo / total_votos);
+    pb = 100 * ((float) branco / total_votos);
 
+    printf("Paulo: %0.1f %%\n", pp);
+    printf("Renata: %0.1f %%\n", pr);
+    printf("Nulo: %0.1f %%\n", pn);
+    printf("Branco: %0.1f %%\n", pb);
 
-
-
+    if(pp > pr){
+        printf("Paulo ganhou as eleicoes");
+    }else if(pr > pp){
+        printf("Renata ganhou as eleicoes");
+    }else{
+        printf("Empate tecnico");
+    }
 }

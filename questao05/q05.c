@@ -4,7 +4,7 @@ A condição de termino do programa ́e quando o usuário digitar zero.*/
 #include <stdio.h>
 
 int main(){
-    int n, menor, maior = 0;
+    int n, c, menor, maior = 0;
     
     while (1){
         printf("Digite um valor: ");
@@ -12,12 +12,16 @@ int main(){
         if (n == 0){
             break;
         }
+        if(c == 1){
+            menor = n;
+        }
         if (n > maior){
             maior = n;
         }
         if (n < menor){
             menor = n;
         }
+        c++;
     }
     printf("O maior numero foi %d e o menor foi %d", maior, menor);
 }

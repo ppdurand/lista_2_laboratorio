@@ -6,6 +6,25 @@ ele  ́e ou n ̃ao um pal ́ındromo. [Dica: use os operadores de divis ̃ao e m
 #include <stdio.h>
 
 int main(){
-    int numero;
-    printf("")
+    int numero, numero_vetor[5], aux = 0;
+    printf("Digite um numero: ");
+    scanf("%d", &numero);
+
+    numero_vetor[0] = numero / 10000;
+    numero_vetor[1] = (numero % 10000) / 1000;
+    numero_vetor[2] = (numero % 1000) / 100;
+    numero_vetor[3] = (numero % 100) / 10;
+    numero_vetor[4] = numero % 10;
+
+    for(int i = 0; i <= 4; i++){
+        if(numero_vetor[i] == numero_vetor[4 - i]){
+            aux++;
+        }
+    }
+    
+    if(aux == 5){
+        printf("O numero e palidromo");
+    }else{
+        printf("O numero nao e palindromo");
+    }
 }
